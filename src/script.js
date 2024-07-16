@@ -62,9 +62,14 @@ const tick = () => {
     // console.log(deltaTime);
 
     // Updates to object
-    // Based on the 
-    mesh.rotation.x = elapsedTime; // Rotation on x axis
-    mesh.rotation.y = elapsedTime; // Rotation on y axis
+    // Updating each time that elapsedTime is updated (every second)
+    mesh.rotation.x = elapsedTime * Math.PI; // 1 revolution per sec
+    mesh.rotation.y = elapsedTime * Math.PI; // 1 revolution per sec
+
+    // Transform using sine and cosine
+    // Makes the object go in a circle clockwise
+    mesh.position.y = -Math.sin(elapsedTime);
+    mesh.position.x = Math.cos(elapsedTime);
 
     // Render
     renderer.render(scene, camera)
