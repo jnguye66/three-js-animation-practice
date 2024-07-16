@@ -68,8 +68,8 @@ const tick = () => {
 
     // Transform using sine and cosine
     // Makes the object go in a circle clockwise
-    mesh.position.y = -Math.sin(elapsedTime);
-    mesh.position.x = Math.cos(elapsedTime);
+    mesh.position.y = -Math.sin(elapsedTime * Math.PI * 2);
+    mesh.position.x = Math.cos(elapsedTime * Math.PI);
 
     // Render
     renderer.render(scene, camera)
