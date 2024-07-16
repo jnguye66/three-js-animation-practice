@@ -31,12 +31,33 @@ renderer.setSize(sizes.width, sizes.height)
 
 
 // Animation Function
-const tick = () => {
-    console.log("tick");
 
-    // Updates to object
-    mesh.rotation.x += 0.005;
-    mesh.rotation.y += 0.005;
+/**
+ * Higher frame rate monitors will result in faster rotating/moving 
+ * animations.
+ */
+
+// Previous TIme
+let time = Date.now();
+
+const tick = () => {
+    // console.log("tick");
+
+    // Optimize animation to play the same on all framerates
+    // using current time - previous time
+    const currentTime = Date.now();
+
+    // Calculating the difference in between times
+    const deltaTime = currentTime - time;
+
+    // Updating previous time to current time, for updated calculations
+    time = currentTime;
+    console.log(deltaTime);
+
+    // Updates to object, based on the difference in times
+    // rather than each tick
+    mesh.rotation.x += 0.001 * deltaTime; // Rotation on x axis
+    mesh.rotation.y += 0.001 * deltaTime; // Rotation on y axis
 
     // Render
     renderer.render(scene, camera)
