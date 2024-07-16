@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { log } from 'three/examples/jsm/nodes/Nodes.js'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -31,33 +32,39 @@ renderer.setSize(sizes.width, sizes.height)
 
 
 // Animation Function
-
 /**
  * Higher frame rate monitors will result in faster rotating/moving 
  * animations.
  */
 
+// Clock
+const clock = new THREE.Clock();
+
 // Previous TIme
 let time = Date.now();
 
 const tick = () => {
-    // console.log("tick");
+    // Clock call for elapsed time
+    // Keeps track of how many seconds have passed
+    // since the initial call
+    const elapsedTime = clock.getElapsedTime();
+    // console.log(elapsedTime);
 
     // Optimize animation to play the same on all framerates
     // using current time - previous time
-    const currentTime = Date.now();
+    // const currentTime = Date.now();
 
     // Calculating the difference in between times
-    const deltaTime = currentTime - time;
+    // const deltaTime = currentTime - time;
 
     // Updating previous time to current time, for updated calculations
-    time = currentTime;
-    console.log(deltaTime);
+    // time = currentTime;
+    // console.log(deltaTime);
 
-    // Updates to object, based on the difference in times
-    // rather than each tick
-    mesh.rotation.x += 0.001 * deltaTime; // Rotation on x axis
-    mesh.rotation.y += 0.001 * deltaTime; // Rotation on y axis
+    // Updates to object
+    // Based on the 
+    mesh.rotation.x = elapsedTime; // Rotation on x axis
+    mesh.rotation.y = elapsedTime; // Rotation on y axis
 
     // Render
     renderer.render(scene, camera)
