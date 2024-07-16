@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { log } from 'three/examples/jsm/nodes/Nodes.js'
+import gsap from 'gsap'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -38,16 +39,23 @@ renderer.setSize(sizes.width, sizes.height)
  */
 
 // Clock
-const clock = new THREE.Clock();
+// const clock = new THREE.Clock();
 
-// Previous TIme
-let time = Date.now();
+// GSAP 
+// to() simple one step animation
+// duration of 1 second
+// delay of 1 second before animation plays
+// x to smoothly play the animation to that value
+gsap.to(mesh.position, { duration: 1, delay: 1,x: 2 })
+
+// Previous Time
+// let time = Date.now();
 
 const tick = () => {
     // Clock call for elapsed time
     // Keeps track of how many seconds have passed
     // since the initial call
-    const elapsedTime = clock.getElapsedTime();
+    // const elapsedTime = clock.getElapsedTime();
     // console.log(elapsedTime);
 
     // Optimize animation to play the same on all framerates
@@ -63,13 +71,13 @@ const tick = () => {
 
     // Updates to object
     // Updating each time that elapsedTime is updated (every second)
-    mesh.rotation.x = elapsedTime * Math.PI; // 1 revolution per sec
-    mesh.rotation.y = elapsedTime * Math.PI; // 1 revolution per sec
+    // mesh.rotation.x = elapsedTime * Math.PI; // 1 revolution per sec
+    // mesh.rotation.y = elapsedTime * Math.PI; // 1 revolution per sec
 
     // Transform using sine and cosine
     // Makes the object go in a circle clockwise
-    mesh.position.y = -Math.sin(elapsedTime * Math.PI * 2);
-    mesh.position.x = Math.cos(elapsedTime * Math.PI);
+    // mesh.position.y = -Math.sin(elapsedTime * Math.PI * 2);
+    // mesh.position.x = Math.cos(elapsedTime * Math.PI);
 
     // Camera animations
     // camera.position.y = Math.sin(elapsedTime);
